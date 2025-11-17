@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5534096545796864761}
-  - component: {fileID: 7928227153278345371}
-  - component: {fileID: 7000232170855313055}
+  - component: {fileID: 8746364736812624795}
+  - component: {fileID: 3438881218985760673}
   m_Layer: 0
   m_Name: Leg
   m_TagString: Untagged
@@ -34,7 +34,7 @@ Transform:
   - {fileID: 6249838557240192679}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &7928227153278345371
+--- !u!54 &8746364736812624795
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -61,16 +61,39 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!138 &7000232170855313055
-FixedJoint:
+--- !u!59 &3438881218985760673
+HingeJoint:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3457664974230260996}
-  serializedVersion: 1
+  serializedVersion: 3
   m_ConnectedBody: {fileID: 0}
   m_ConnectedArticulationBody: {fileID: 0}
+  m_Anchor: {x: 0, y: 0, z: 0}
+  m_Axis: {x: 0, y: 1, z: 0}
+  m_AutoConfigureConnectedAnchor: 1
+  m_ConnectedAnchor: {x: 0, y: 0, z: 0}
+  m_UseSpring: 0
+  m_Spring:
+    spring: 0
+    damper: 0
+    targetPosition: 0
+  m_UseMotor: 0
+  m_Motor:
+    targetVelocity: 0
+    force: 0
+    freeSpin: 0
+  m_UseLimits: 0
+  m_ExtendedLimits: 0
+  m_UseAcceleration: 0
+  m_Limits:
+    min: 0
+    max: 0
+    bounciness: 0
+    bounceMinVelocity: 0.2
+    contactDistance: 0
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
   m_EnableCollision: 0
@@ -89,8 +112,8 @@ GameObject:
   - component: {fileID: 3271339416248399543}
   - component: {fileID: 7787315902127072254}
   - component: {fileID: 5259175683264172621}
-  - component: {fileID: 6361326326722322365}
-  - component: {fileID: 7457514434462396382}
+  - component: {fileID: 7927749226821145784}
+  - component: {fileID: 4488526390701814979}
   m_Layer: 0
   m_Name: Part
   m_TagString: Untagged
@@ -106,13 +129,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4656106635212653778}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.4221281, y: 0.043634262, z: -0.020347096, w: 0.9052568}
+  m_LocalRotation: {x: 0.42261827, y: 0, z: 0, w: 0.9063079}
   m_LocalPosition: {x: -0.054152727, y: -0.4724491, z: -0.56043255}
-  m_LocalScale: {x: 0.2, y: 1.4999999, z: 0.20000008}
+  m_LocalScale: {x: 0.6, y: 1.4999999, z: 0.4}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5534096545796864761}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 50, y: 0, z: 0}
 --- !u!33 &3271339416248399543
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -190,7 +213,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &6361326326722322365
+--- !u!54 &7927749226821145784
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -217,46 +240,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!144 &7457514434462396382
-CharacterJoint:
+--- !u!138 &4488526390701814979
+FixedJoint:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4656106635212653778}
-  serializedVersion: 3
-  m_ConnectedBody: {fileID: 7928227153278345371}
+  serializedVersion: 1
+  m_ConnectedBody: {fileID: 8746364736812624795}
   m_ConnectedArticulationBody: {fileID: 0}
-  m_Anchor: {x: 0, y: 0.5, z: 0}
-  m_Axis: {x: 1, y: 0, z: 0}
-  m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0, y: 0, z: 0}
-  m_SwingAxis: {x: 0, y: 1, z: 0}
-  m_TwistLimitSpring:
-    spring: 0
-    damper: 0
-  m_LowTwistLimit:
-    limit: -20
-    bounciness: 0
-    contactDistance: 0
-  m_HighTwistLimit:
-    limit: 70
-    bounciness: 0
-    contactDistance: 0
-  m_SwingLimitSpring:
-    spring: 0
-    damper: 0
-  m_Swing1Limit:
-    limit: 40
-    bounciness: 0
-    contactDistance: 0
-  m_Swing2Limit:
-    limit: 40
-    bounciness: 0
-    contactDistance: 0
-  m_EnableProjection: 0
-  m_ProjectionDistance: 0.1
-  m_ProjectionAngle: 180
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
   m_EnableCollision: 0
