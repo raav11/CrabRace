@@ -9,8 +9,11 @@ public class PlayerPrototypeMovement : MonoBehaviour
     private Vector3 targetRotation;
     [SerializeField] private float speed = 50f;
     private bool moving;
-    public bool A;
-    public bool D;
+    [SerializeField] private bool left;
+    [SerializeField] private bool right;
+
+    [SerializeField] private bool leftA;
+    [SerializeField] private bool rightD;
 
     private void OnEnable()
     {
@@ -21,17 +24,30 @@ public class PlayerPrototypeMovement : MonoBehaviour
 
         playerInput.Movement.Enable();
 
-        if (A)
+        if (left)
         {
-            playerInput.Movement.MoveLeft.performed += Move;
-            playerInput.Movement.MoveLeft.canceled += Move;
+            playerInput.Movement.Left.performed += Move;
+            playerInput.Movement.Left.canceled += Move;
 
         }
 
-        else if (D)
+        else if (right)
         {
-            playerInput.Movement.MoveRight.performed += Move;
-            playerInput.Movement.MoveRight.canceled += Move;
+            playerInput.Movement.Right.performed += Move;
+            playerInput.Movement.Right.canceled += Move;
+        }
+
+        else if (leftA)
+        {
+            playerInput.Movement.LeftA.performed += Move;
+            playerInput.Movement.LeftA.canceled += Move;
+
+        }
+
+        else if (rightD)
+        {
+            playerInput.Movement.RightD.performed += Move;
+            playerInput.Movement.RightD.canceled += Move;
         }
     }
 
@@ -39,11 +55,17 @@ public class PlayerPrototypeMovement : MonoBehaviour
     {
         if (playerInput != null)
         {
-            playerInput.Movement.MoveLeft.performed -= Move;
-            playerInput.Movement.MoveLeft.canceled -= Move;
+            playerInput.Movement.Left.performed -= Move;
+            playerInput.Movement.Left.canceled -= Move;
 
-            playerInput.Movement.MoveRight.performed -= Move;
-            playerInput.Movement.MoveRight.canceled -= Move;
+            playerInput.Movement.Right.performed -= Move;
+            playerInput.Movement.Right.canceled -= Move;
+
+            playerInput.Movement.LeftA.performed -= Move;
+            playerInput.Movement.LeftA.canceled -= Move;
+
+            playerInput.Movement.RightD.performed -= Move;
+            playerInput.Movement.RightD.canceled -= Move;
 
             playerInput.Movement.Disable();
         }
@@ -61,7 +83,25 @@ public class PlayerPrototypeMovement : MonoBehaviour
 
     private void Movement()
     {
-        targetRotation.y = movementDirection.x * speed;
+        if (left)
+        {
+            targetRotation.y = movementDirection.y * speed;
+        }
+
+        else if (right)
+        {
+            targetRotation.y = movementDirection.y * -speed;
+        }
+
+        else if (leftA)
+        {
+            targetRotation.y = movementDirection.y * speed;
+        }
+
+        else if (rightD)
+        {
+            targetRotation.y = movementDirection.y * -speed;
+        }
 
         transform.Rotate(targetRotation * Time.fixedDeltaTime);
 
