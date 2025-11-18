@@ -575,6 +575,10 @@ PrefabInstance:
       propertyPath: m_ConnectedBody
       value: 
       objectReference: {fileID: 317030131}
+    - target: {fileID: 5259175683264172621, guid: 38f99d15eaff24e4683f7c9c02168440, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: ac4a9f61efb938f4f8d4434322b7c2f1, type: 2}
     - target: {fileID: 5534096545796864761, guid: 38f99d15eaff24e4683f7c9c02168440, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.49
@@ -651,6 +655,10 @@ PrefabInstance:
       propertyPath: m_ConnectedBody
       value: 
       objectReference: {fileID: 317030131}
+    - target: {fileID: 5259175683264172621, guid: 38f99d15eaff24e4683f7c9c02168440, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: ac4a9f61efb938f4f8d4434322b7c2f1, type: 2}
     - target: {fileID: 5534096545796864761, guid: 38f99d15eaff24e4683f7c9c02168440, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -755,6 +763,10 @@ PrefabInstance:
       propertyPath: m_ConnectedBody
       value: 
       objectReference: {fileID: 317030131}
+    - target: {fileID: 5259175683264172621, guid: 38f99d15eaff24e4683f7c9c02168440, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: ac4a9f61efb938f4f8d4434322b7c2f1, type: 2}
     - target: {fileID: 5534096545796864761, guid: 38f99d15eaff24e4683f7c9c02168440, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -1040,6 +1052,10 @@ PrefabInstance:
       propertyPath: m_ConnectedBody
       value: 
       objectReference: {fileID: 317030131}
+    - target: {fileID: 5259175683264172621, guid: 38f99d15eaff24e4683f7c9c02168440, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: ac4a9f61efb938f4f8d4434322b7c2f1, type: 2}
     - target: {fileID: 5534096545796864761, guid: 38f99d15eaff24e4683f7c9c02168440, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.36
