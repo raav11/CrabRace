@@ -1,0 +1,66 @@
+using UnityEngine;
+using System;
+
+public class AudioManager : MonoBehaviour
+{
+    public EventHandler OnSoundPlayed;
+
+    public static AudioManager Instance { get; private set; }
+
+    public Sound[] sounds;
+
+    private void Awake()
+    {
+        if (Instance != null)
+        {
+            Debug.LogError("Multiple AudioManager instances found!");
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+
+        foreach (Sound sound in sounds)
+        {
+            sound.audioSource = gameObject.AddComponent<AudioSource>();
+            sound.audioSource.clip = sound.audioClip;
+
+            sound.audioSource.volume = sound.volume;
+            sound.audioSource.pitch = sound.pitch;
+            sound.audioSource.loop = sound.isLooping;
+        }
+    }
+
+    public void Play(string name)
+    {
+        Sound sound = Array.Find(sounds, s => s.name == name);
+        if (sound == null)
+        {
+            Debug.LogWarning("Sound not found: " + name);
+            return;
+        }
+        sound.audioSource.Play();
+        OnSoundPlayed?.Invoke(this, EventArgs.Empty);
+    }
+
+    public void Stop(string name)
+    {
+        Sound sound = Array.Find(sounds, s => s.name == name);
+        if (sound == null)
+        {
+            Debug.LogWarning("Sound not found: " + name);
+            return;
+        }
+        sound.audioSource.Stop();
+    }
+
+    public void SetVolume(string name, float volume)
+    {
+        Sound sound = Array.Find(sounds, s => s.name == name);
+        if (sound == null)
+        {
+            Debug.LogWarning("Sound not found: " + name);
+            return;
+        }
+        sound.audioSource.volume = volume;
+    }
+}
