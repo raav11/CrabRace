@@ -1,16 +1,20 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
+    public EventHandler<TestPlayerController> OnLeaderChanged;
 
     [SerializeField]
-    private List<GameObject> players = new List<GameObject>();
+    private List<TestPlayerController> players = new List<TestPlayerController>();
 
-    public GameObject playerInTheLead;
+    private TestPlayerController playerInTheLead;
+    [SerializeField]
+    private Transform finishLine;
 
     private void Awake()
     {
@@ -23,26 +27,40 @@ public class GameManager : MonoBehaviour
         Instance = this;
     }
 
-    private void RegisterPlayer(GameObject player)
+    private void Update()
+    {
+        foreach (var player in players)
+        {
+            player.distanceToFinish = Vector3.Distance(player.transform.position, finishLine.position);
+        }
+
+        playerInTheLead = players.OrderBy(p => p.distanceToFinish).FirstOrDefault();
+        if (playerInTheLead != null)
+        {
+            OnLeaderChanged?.Invoke(this, playerInTheLead);
+        }
+    }
+
+    public void RegisterPlayer(TestPlayerController player)
     {
         // Implementation for registering the player
         players.Add(player);
         Debug.Log("Player registered: " + player.name);
-        InputManager.Instance.OnPlayerRegistered?.Invoke(this, EventArgs.Empty);
+        //InputManager.Instance.OnPlayerRegistered?.Invoke(this, EventArgs.Empty);
     }
     
-    private void DeRegisterPlayer(GameObject player)
+    public void DeRegisterPlayer(GameObject player)
     {
         // Implementation for deregistering the player
         Debug.Log("Player deregistered: " + player.name);
     }
 
-    public List<GameObject> GetPlayers()
+    public List<TestPlayerController> GetPlayers()
     {
         return players;
     }
 
-    public GameObject GetPlayerInTheLead()
+    public TestPlayerController GetPlayerInTheLead()
     {
         return playerInTheLead;
     }
