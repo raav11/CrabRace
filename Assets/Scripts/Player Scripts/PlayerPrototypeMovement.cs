@@ -7,8 +7,10 @@ public class PlayerPrototypeMovement : MonoBehaviour
     private Player playerInput;
     [SerializeField] Vector2 movementDirection;
     private Vector3 targetRotation;
+    private Rigidbody rb;
     [SerializeField] private float speed = 50f;
     private bool moving;
+    private float y;
     [SerializeField] private bool left;
     [SerializeField] private bool right;
 
@@ -71,12 +73,27 @@ public class PlayerPrototypeMovement : MonoBehaviour
         }
     }
 
+
+    private void Start()
+    {
+
+        y = transform.position.y;
+        rb = GetComponent<Rigidbody>();
+
+    }
     private void FixedUpdate()
     {
 
         if (moving)
         {
             Movement();
+
+            rb.mass = 4;
+        }
+
+        else
+        {
+            rb.mass = 10f;
         }
 
     }
@@ -90,12 +107,12 @@ public class PlayerPrototypeMovement : MonoBehaviour
 
         else if (right)
         {
-            targetRotation.y = movementDirection.y * -speed;
+            targetRotation.y = movementDirection.y * speed;
         }
 
         else if (leftA)
         {
-            targetRotation.y = movementDirection.y * speed;
+            targetRotation.y = movementDirection.y * -speed;
         }
 
         else if (rightD)
@@ -103,7 +120,15 @@ public class PlayerPrototypeMovement : MonoBehaviour
             targetRotation.y = movementDirection.y * -speed;
         }
 
-        transform.Rotate(targetRotation * Time.fixedDeltaTime);
+        if (y >= transform.rotation.y - 6 && y <= transform.rotation.y + 6)
+        {
+            transform.Rotate(targetRotation * Time.fixedDeltaTime);
+        }
+
+        else
+        {
+            Debug.Log("Rotation Limit Reached");
+        }
 
     }
 
