@@ -16,6 +16,9 @@ public class PlayerPrototypeMovement : MonoBehaviour
 
     [SerializeField] private bool leftA;
     [SerializeField] private bool rightD;
+    [SerializeField] private Transform body;
+
+    private float timer;
 
     private void OnEnable()
     {
@@ -98,6 +101,31 @@ public class PlayerPrototypeMovement : MonoBehaviour
 
     }
 
+    private void Update()
+    {
+
+        Debug.Log("Z Rotation: " + body.rotation.eulerAngles.z);
+
+        if (body.rotation.eulerAngles.z >= 60 && body.rotation.eulerAngles.z <= 200 || body.rotation.eulerAngles.z <= 300 && body.rotation.eulerAngles.z >= 200)
+        {
+            timer += Time.deltaTime;
+            Debug.Log("Timer: " + timer);
+
+            if (timer >= 5f)
+            {
+                Resposition();
+                Debug.Log("Fell Over");
+
+            }
+        }
+
+        else
+        {
+            timer = 0;
+        }
+
+    }
+
     private void Movement()
     {
         if (left)
@@ -125,11 +153,6 @@ public class PlayerPrototypeMovement : MonoBehaviour
             transform.Rotate(targetRotation * Time.fixedDeltaTime);
         }
 
-        else
-        {
-            Debug.Log("Rotation Limit Reached");
-        }
-
     }
 
     public void Move(InputAction.CallbackContext context)
@@ -137,6 +160,27 @@ public class PlayerPrototypeMovement : MonoBehaviour
         movementDirection = context.ReadValue<Vector2>();
 
         moving = context.performed;
+    }
+
+    private void Resposition()
+    {
+
+        body.localRotation = Quaternion.Euler(0, 90, 0);
+        body.position = new Vector3(body.position.x, 9f, body.position.z);
+
+        if (rightD || leftA)
+        {
+            gameObject.transform.rotation = Quaternion.Euler(-35.97f, 180, 0);
+        }
+        else if (right || left)
+        {
+            gameObject.transform.rotation = Quaternion.Euler(-35.97f, 0, 0);
+        }
+
+
+
+        timer = 0;
+
     }
 
 }
