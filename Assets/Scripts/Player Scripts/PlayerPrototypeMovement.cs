@@ -104,17 +104,14 @@ public class PlayerPrototypeMovement : MonoBehaviour
     private void Update()
     {
 
-        Debug.Log("Z Rotation: " + body.rotation.eulerAngles.z);
 
         if (body.rotation.eulerAngles.z >= 60 && body.rotation.eulerAngles.z <= 200 || body.rotation.eulerAngles.z <= 300 && body.rotation.eulerAngles.z >= 200)
         {
             timer += Time.deltaTime;
-            Debug.Log("Timer: " + timer);
 
-            if (timer >= 5f)
+            if (timer >= 3.5f)
             {
                 Resposition();
-                Debug.Log("Fell Over");
 
             }
         }
