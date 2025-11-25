@@ -6,6 +6,7 @@ public class PickUpManager : MonoBehaviour
 {
     public static PickUpManager Instance { get; private set; }
 
+    [SerializeField]
     private List<BasePickUp> pickUps = new List<BasePickUp>();
 
     private void Awake()
@@ -33,5 +34,10 @@ public class PickUpManager : MonoBehaviour
         {
             pickUps.Remove(pickUp);
         }
+    }
+
+    public List<BasePickUp> GetAllPickUps()
+    {
+        return new List<BasePickUp>(pickUps);
     }
 }

@@ -3,6 +3,8 @@ using UnityEngine;
 
 public abstract class Entity : MonoBehaviour
 {
+    // This is a placeholder class for the testPlayer will not be in the final version
+
     public enum EntityType
     {
         Player,
