@@ -104,7 +104,6 @@ public class PlayerPrototypeMovement : MonoBehaviour
     private void Update()
     {
 
-
         if (body.rotation.eulerAngles.z >= 60 && body.rotation.eulerAngles.z <= 200 || body.rotation.eulerAngles.z <= 300 && body.rotation.eulerAngles.z >= 200)
         {
             timer += Time.deltaTime;
@@ -145,11 +144,7 @@ public class PlayerPrototypeMovement : MonoBehaviour
             targetRotation.y = movementDirection.y * -speed;
         }
 
-        if (y >= transform.rotation.y - 6 && y <= transform.rotation.y + 6)
-        {
-            transform.Rotate(targetRotation * Time.fixedDeltaTime);
-        }
-
+        transform.Rotate(targetRotation * Time.fixedDeltaTime);
     }
 
     public void Move(InputAction.CallbackContext context)
@@ -162,7 +157,7 @@ public class PlayerPrototypeMovement : MonoBehaviour
     private void Resposition()
     {
 
-        body.localRotation = Quaternion.Euler(0, 90, 0);
+        body.localRotation = Quaternion.Euler(0, body.rotation.eulerAngles.y, 0);
         body.position = new Vector3(body.position.x, 9f, body.position.z);
 
         if (rightD || leftA)
@@ -173,8 +168,6 @@ public class PlayerPrototypeMovement : MonoBehaviour
         {
             gameObject.transform.rotation = Quaternion.Euler(-35.97f, 0, 0);
         }
-
-
 
         timer = 0;
 
