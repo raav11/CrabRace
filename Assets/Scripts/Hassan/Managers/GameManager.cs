@@ -65,6 +65,7 @@ public class GameManager : MonoBehaviour
             timerTeam2 += Time.deltaTime;
         }
     }
+
     private void PlayerFinished(object sender, TestPlayerController e)
     {
         if (e.team == TestPlayerController.Team.Team1 && !raceFinishedTeam1)
