@@ -7,7 +7,7 @@ public abstract class BasePickUp : MonoBehaviour
     public PickupSO pickupSO;
 
     protected GameObject player;
-    protected virtual void Awake()
+    protected virtual void Start()
     {
         // Pickup registers itself with the PickUpManager
         PickUpManager.Instance.RegisterPickUp(this);
