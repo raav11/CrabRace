@@ -49,12 +49,20 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: 97479363f20efd54882a9f448a8e63eb, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 97479363f20efd54882a9f448a8e63eb, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 80a67af3a7db1d0419ca4ff3a40c90dd, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 97479363f20efd54882a9f448a8e63eb, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: bc0c2465af9287546a729b8c208e9944, type: 2}
     - target: {fileID: 919132149155446097, guid: 97479363f20efd54882a9f448a8e63eb, type: 3}
       propertyPath: m_Name
-      value: Sandcastle_Cutout_Model
+      value: Sandcastle_Cutout_Prefab
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
