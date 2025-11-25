@@ -12,9 +12,17 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private List<TestPlayerController> players = new List<TestPlayerController>();
 
+    [SerializeField]
     private TestPlayerController playerInTheLead;
     [SerializeField]
-    private Transform finishLine;
+    private GameObject finishLine;
+    private bool raceFinishedTeam1 = false;
+    private bool raceFinishedTeam2 = false;
+
+    [SerializeField]
+    private float timerTeam1;
+    [SerializeField]
+    private float timerTeam2;
 
     private void Awake()
     {
@@ -27,11 +35,19 @@ public class GameManager : MonoBehaviour
         Instance = this;
     }
 
+    private void Start()
+    {
+        FinishCheck finishCheck = finishLine.GetComponent<FinishCheck>();
+
+        // Fix: Subscribe the method as an event handler, not call it directly
+        finishCheck.OnPlayerFinished += PlayerFinished;
+    }
+
     private void Update()
     {
         foreach (var player in players)
         {
-            player.distanceToFinish = Vector3.Distance(player.transform.position, finishLine.position);
+            player.distanceToFinish = Vector3.Distance(player.transform.position, finishLine.transform.position);
         }
 
         playerInTheLead = players.OrderBy(p => p.distanceToFinish).FirstOrDefault();
@@ -39,19 +55,61 @@ public class GameManager : MonoBehaviour
         {
             OnLeaderChanged?.Invoke(this, playerInTheLead);
         }
+
+        if (!raceFinishedTeam1)
+        {
+            timerTeam1 += Time.deltaTime;
+        }
+        if (!raceFinishedTeam2)
+        {
+            timerTeam2 += Time.deltaTime;
+        }
+    }
+    private void PlayerFinished(object sender, TestPlayerController e)
+    {
+        if (e.team == TestPlayerController.Team.Team1 && !raceFinishedTeam1)
+        {
+            raceFinishedTeam1 = true;
+            Debug.Log("Team 1 has finished!");
+        }
+        else if (e.team == TestPlayerController.Team.Team2 && !raceFinishedTeam2)
+        {
+            raceFinishedTeam2 = true;
+            Debug.Log("Team 2 has finished!");
+        }
     }
 
     public void RegisterPlayer(TestPlayerController player)
     {
-        // Implementation for registering the player
+        // Avoid duplicate registration
+        if (players.Contains(player))
+        {
+            Debug.LogWarning("Player already registered: " + player.name);
+            return;
+        }
+
+        // Add player to the list
         players.Add(player);
-        Debug.Log("Player registered: " + player.name);
+
+        // Determine team based on registration order:
+        int index = players.Count - 1;
+        if (index < 2)
+        {
+            player.team = TestPlayerController.Team.Team1;
+        }
+        else
+        {
+            player.team = TestPlayerController.Team.Team2;
+        }
+
+        Debug.Log("Player registered: " + player.name + " assigned to " + player.team);
         //InputManager.Instance.OnPlayerRegistered?.Invoke(this, EventArgs.Empty);
     }
     
-    public void DeRegisterPlayer(GameObject player)
+    public void DeRegisterPlayer(TestPlayerController player)
     {
         // Implementation for deregistering the player
+        players.Remove(player);
         Debug.Log("Player deregistered: " + player.name);
     }
 

@@ -2,9 +2,16 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class TestPlayerController : Entity
 {
+    public enum Team
+    {
+        Team1,
+        Team2
+    }
+
     [SerializeField]
     private Vector2 moveInput;
 
@@ -13,6 +20,7 @@ public class TestPlayerController : Entity
     [SerializeField]
     private List<BasePickUp> collectedPickUps = new List<BasePickUp>();
     private const int maxPickUps = 3;
+    public Team team;
 
     public override void Start()
     {
