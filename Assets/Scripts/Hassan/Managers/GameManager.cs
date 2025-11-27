@@ -71,12 +71,10 @@ public class GameManager : MonoBehaviour
         if (e.team == TestPlayerController.Team.Team1 && !raceFinishedTeam1)
         {
             raceFinishedTeam1 = true;
-            Debug.Log("Team 1 has finished!");
         }
         else if (e.team == TestPlayerController.Team.Team2 && !raceFinishedTeam2)
         {
             raceFinishedTeam2 = true;
-            Debug.Log("Team 2 has finished!");
         }
     }
 
@@ -84,8 +82,7 @@ public class GameManager : MonoBehaviour
     {
         // Avoid duplicate registration
         if (players.Contains(player))
-        {
-            Debug.LogWarning("Player already registered: " + player.name);
+        {   
             return;
         }
 
@@ -102,16 +99,16 @@ public class GameManager : MonoBehaviour
         {
             player.team = TestPlayerController.Team.Team2;
         }
-
-        Debug.Log("Player registered: " + player.name + " assigned to " + player.team);
         //InputManager.Instance.OnPlayerRegistered?.Invoke(this, EventArgs.Empty);
     }
-    
+
     public void DeRegisterPlayer(TestPlayerController player)
     {
         // Implementation for deregistering the player
-        players.Remove(player);
-        Debug.Log("Player deregistered: " + player.name);
+        if (players.Contains(player))
+        {
+            players.Remove(player);
+        }
     }
 
     public List<TestPlayerController> GetPlayers()
@@ -122,6 +119,11 @@ public class GameManager : MonoBehaviour
     public TestPlayerController GetPlayerInTheLead()
     {
         return playerInTheLead;
+    }
+
+    public TestPlayerController GetPlayerInTheBack()
+    {
+        return players.OrderByDescending(p => p.distanceToFinish).FirstOrDefault();
     }
 
     // Example method to demonstrate interaction with AudioManager

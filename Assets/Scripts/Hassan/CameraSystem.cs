@@ -8,6 +8,8 @@ public class CameraSystem : MonoBehaviour
     [SerializeField]
     private CinemachineCamera cinemachineCamera;
     [SerializeField]
+    private CinemachineFollow cinemachineFollow;
+    [SerializeField]
     private TestPlayerController targetPlayer;
 
     private void Start()
@@ -21,7 +23,6 @@ public class CameraSystem : MonoBehaviour
         {
             targetPlayer = e;
             cinemachineCamera.Follow = targetPlayer.transform;
-            cinemachineCamera.LookAt = targetPlayer.transform;
         }
     }
 }
