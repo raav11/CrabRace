@@ -1,22 +1,27 @@
-using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
+[RequireComponent(typeof(PlayerInput))]
 public class CrabDriver : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private CrabLeg _leftLeg;
+    private CrabLeg _rightLeg;
+
+    // The Manager calls this immediately after spawning this object
+    public void AssignLegs(CrabLeg left, CrabLeg right)
     {
-        
+        _leftLeg = left;
+        _rightLeg = right;
     }
 
-    // Update is called once per frame
-    void Update()
+    // Input Action Callback (hook this up in PlayerInput events)
+    public void OnMoveLeftLeg(InputValue value)
     {
-        
+        if (_leftLeg != null) _leftLeg.Move(value.Get<Vector2>());
     }
 
-    internal void AssignLegs(CrabLeg leftLeg, CrabLeg rightLeg)
+    public void OnMoveRightLeg(InputValue value)
     {
-
+        if (_rightLeg != null) _rightLeg.Move(value.Get<Vector2>());
     }
 }

@@ -121,6 +121,11 @@ public class GameManager : MonoBehaviour
         return playerInTheLead;
     }
 
+    public TestPlayerController GetPlayerInTheBack()
+    {
+        return players.OrderByDescending(p => p.distanceToFinish).FirstOrDefault();
+    }
+
     // Example method to demonstrate interaction with AudioManager
     private void PlayExampleSound()
     {
