@@ -36,9 +36,9 @@ Transform:
   m_Children:
   - {fileID: 5400075978997345448}
   - {fileID: 6578893502512011979}
-  - {fileID: 5884919598245827671}
   - {fileID: 8148342814940529570}
   - {fileID: 9102982008410197134}
+  - {fileID: 5884919598245827671}
   - {fileID: 4626381898738133363}
   - {fileID: 4466733727242731314}
   - {fileID: 8924843726480385019}
@@ -200,7 +200,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3457664974230260996, guid: 38f99d15eaff24e4683f7c9c02168440, type: 3}
       propertyPath: m_Name
-      value: Leg (4)
+      value: Leg Front Right
       objectReference: {fileID: 0}
     - target: {fileID: 4775518120142885021, guid: 38f99d15eaff24e4683f7c9c02168440, type: 3}
       propertyPath: m_ConnectedBody
@@ -297,6 +297,7 @@ MonoBehaviour:
   right: 0
   leftA: 1
   rightD: 0
+  body: {fileID: 0}
 --- !u!4 &5400075978997345448 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5534096545796864761, guid: 38f99d15eaff24e4683f7c9c02168440, type: 3}
@@ -321,7 +322,7 @@ PrefabInstance:
       objectReference: {fileID: 8314601100977125910}
     - target: {fileID: 3457664974230260996, guid: 38f99d15eaff24e4683f7c9c02168440, type: 3}
       propertyPath: m_Name
-      value: Foot2
+      value: Foot Front Left
       objectReference: {fileID: 0}
     - target: {fileID: 4775518120142885021, guid: 38f99d15eaff24e4683f7c9c02168440, type: 3}
       propertyPath: m_ConnectedBody
@@ -426,6 +427,7 @@ MonoBehaviour:
   right: 0
   leftA: 0
   rightD: 0
+  body: {fileID: 0}
 --- !u!4 &4626381898738133363 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5534096545796864761, guid: 38f99d15eaff24e4683f7c9c02168440, type: 3}
@@ -445,7 +447,7 @@ PrefabInstance:
       objectReference: {fileID: 7510006271366185705}
     - target: {fileID: 3457664974230260996, guid: 38f99d15eaff24e4683f7c9c02168440, type: 3}
       propertyPath: m_Name
-      value: Foot (2)
+      value: Foot Front Right
       objectReference: {fileID: 0}
     - target: {fileID: 4775518120142885021, guid: 38f99d15eaff24e4683f7c9c02168440, type: 3}
       propertyPath: m_ConnectedBody
@@ -550,6 +552,7 @@ MonoBehaviour:
   right: 0
   leftA: 1
   rightD: 0
+  body: {fileID: 0}
 --- !u!138 &28026436285461076
 FixedJoint:
   m_ObjectHideFlags: 0
@@ -593,7 +596,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3457664974230260996, guid: 38f99d15eaff24e4683f7c9c02168440, type: 3}
       propertyPath: m_Name
-      value: Leg (1)
+      value: Leg Front Left
       objectReference: {fileID: 0}
     - target: {fileID: 4775518120142885021, guid: 38f99d15eaff24e4683f7c9c02168440, type: 3}
       propertyPath: m_ConnectedBody
@@ -674,6 +677,7 @@ MonoBehaviour:
   right: 0
   leftA: 0
   rightD: 0
+  body: {fileID: 0}
 --- !u!4 &5884919598245827671 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5534096545796864761, guid: 38f99d15eaff24e4683f7c9c02168440, type: 3}
@@ -698,7 +702,7 @@ PrefabInstance:
       objectReference: {fileID: 6042898355567095267}
     - target: {fileID: 3457664974230260996, guid: 38f99d15eaff24e4683f7c9c02168440, type: 3}
       propertyPath: m_Name
-      value: Foot (3)
+      value: Foot Back Right
       objectReference: {fileID: 0}
     - target: {fileID: 4775518120142885021, guid: 38f99d15eaff24e4683f7c9c02168440, type: 3}
       propertyPath: m_ConnectedBody
@@ -803,6 +807,7 @@ MonoBehaviour:
   right: 0
   leftA: 0
   rightD: 1
+  body: {fileID: 0}
 --- !u!138 &6012343729399825501
 FixedJoint:
   m_ObjectHideFlags: 0
@@ -838,7 +843,7 @@ PrefabInstance:
       objectReference: {fileID: 2248717054862578035}
     - target: {fileID: 3457664974230260996, guid: 38f99d15eaff24e4683f7c9c02168440, type: 3}
       propertyPath: m_Name
-      value: Foot2 (1)
+      value: Foot Back Left
       objectReference: {fileID: 0}
     - target: {fileID: 4775518120142885021, guid: 38f99d15eaff24e4683f7c9c02168440, type: 3}
       propertyPath: m_ConnectedBody
@@ -943,6 +948,7 @@ MonoBehaviour:
   right: 1
   leftA: 0
   rightD: 0
+  body: {fileID: 0}
 --- !u!4 &8924843726480385019 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5534096545796864761, guid: 38f99d15eaff24e4683f7c9c02168440, type: 3}
@@ -966,7 +972,7 @@ PrefabInstance:
       objectReference: {fileID: 5261500395055773242}
     - target: {fileID: 3457664974230260996, guid: 38f99d15eaff24e4683f7c9c02168440, type: 3}
       propertyPath: m_Name
-      value: Leg (5)
+      value: Leg Back Right
       objectReference: {fileID: 0}
     - target: {fileID: 4775518120142885021, guid: 38f99d15eaff24e4683f7c9c02168440, type: 3}
       propertyPath: m_ConnectedBody
@@ -1067,6 +1073,7 @@ MonoBehaviour:
   right: 0
   leftA: 0
   rightD: 1
+  body: {fileID: 0}
 --- !u!54 &6042898355567095267 stripped
 Rigidbody:
   m_CorrespondingSourceObject: {fileID: 7927749226821145784, guid: 38f99d15eaff24e4683f7c9c02168440, type: 3}
@@ -1095,7 +1102,7 @@ PrefabInstance:
       objectReference: {fileID: 5261500395055773242}
     - target: {fileID: 3457664974230260996, guid: 38f99d15eaff24e4683f7c9c02168440, type: 3}
       propertyPath: m_Name
-      value: Leg (3)
+      value: Leg Back Left
       objectReference: {fileID: 0}
     - target: {fileID: 4775518120142885021, guid: 38f99d15eaff24e4683f7c9c02168440, type: 3}
       propertyPath: m_ConnectedBody
@@ -1186,3 +1193,4 @@ MonoBehaviour:
   right: 1
   leftA: 0
   rightD: 0
+  body: {fileID: 0}

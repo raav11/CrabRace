@@ -109,24 +109,6 @@ public partial class @Player: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
-                },
-                {
-                    ""name"": ""LeftA"",
-                    ""type"": ""Value"",
-                    ""id"": ""de4ce8be-538d-4a54-b9ab-d428c60afa74"",
-                    ""expectedControlType"": ""Vector2"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
-                },
-                {
-                    ""name"": ""RightD"",
-                    ""type"": ""Value"",
-                    ""id"": ""f39628d5-1a08-43a3-9584-566954557a84"",
-                    ""expectedControlType"": ""Vector2"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -142,61 +124,6 @@ public partial class @Player: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""2D Vector"",
-                    ""id"": ""f10a939f-6e81-45c1-b942-34c2985fab8d"",
-                    ""path"": ""2DVector"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""RightD"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""up"",
-                    ""id"": ""c78e07b3-26e2-47ba-8fb2-e4d690d9b4a8"",
-                    ""path"": ""<Keyboard>/upArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""RightD"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""down"",
-                    ""id"": ""fa8a965f-b449-4443-aa5f-ddc110ced5c0"",
-                    ""path"": ""<Keyboard>/downArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""RightD"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""left"",
-                    ""id"": ""617891de-b301-406f-b182-b493dd4e5b6e"",
-                    ""path"": ""<Keyboard>/leftArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""RightD"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""right"",
-                    ""id"": ""db88b059-5300-4975-ade6-f056446fc3d4"",
-                    ""path"": ""<Keyboard>/rightArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""RightD"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
                     ""name"": """",
                     ""id"": ""09c257d2-a196-49f3-9214-16ea1fe90c99"",
                     ""path"": ""<XInputController>/rightStick"",
@@ -206,61 +133,6 @@ public partial class @Player: IInputActionCollection2, IDisposable
                     ""action"": ""Right"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""2D Vector"",
-                    ""id"": ""4454a638-3f26-4d23-93fa-7b00a7cef68e"",
-                    ""path"": ""2DVector"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""LeftA"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""up"",
-                    ""id"": ""70a31614-42ec-466d-85b1-719a0a709638"",
-                    ""path"": ""<Keyboard>/w"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""LeftA"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""down"",
-                    ""id"": ""bbf08963-f527-45bc-bef5-255b768d738f"",
-                    ""path"": ""<Keyboard>/s"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""LeftA"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""left"",
-                    ""id"": ""c3166025-88ce-4b43-93d8-3081ebfe8a81"",
-                    ""path"": ""<Keyboard>/a"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""LeftA"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""right"",
-                    ""id"": ""c204e127-f458-4663-aa11-69e1f1090649"",
-                    ""path"": ""<Keyboard>/d"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""LeftA"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -271,8 +143,6 @@ public partial class @Player: IInputActionCollection2, IDisposable
         m_Movement = asset.FindActionMap("Movement", throwIfNotFound: true);
         m_Movement_Left = m_Movement.FindAction("Left", throwIfNotFound: true);
         m_Movement_Right = m_Movement.FindAction("Right", throwIfNotFound: true);
-        m_Movement_LeftA = m_Movement.FindAction("LeftA", throwIfNotFound: true);
-        m_Movement_RightD = m_Movement.FindAction("RightD", throwIfNotFound: true);
     }
 
     ~@Player()
@@ -355,8 +225,6 @@ public partial class @Player: IInputActionCollection2, IDisposable
     private List<IMovementActions> m_MovementActionsCallbackInterfaces = new List<IMovementActions>();
     private readonly InputAction m_Movement_Left;
     private readonly InputAction m_Movement_Right;
-    private readonly InputAction m_Movement_LeftA;
-    private readonly InputAction m_Movement_RightD;
     /// <summary>
     /// Provides access to input actions defined in input action map "Movement".
     /// </summary>
@@ -376,14 +244,6 @@ public partial class @Player: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Movement/Right".
         /// </summary>
         public InputAction @Right => m_Wrapper.m_Movement_Right;
-        /// <summary>
-        /// Provides access to the underlying input action "Movement/LeftA".
-        /// </summary>
-        public InputAction @LeftA => m_Wrapper.m_Movement_LeftA;
-        /// <summary>
-        /// Provides access to the underlying input action "Movement/RightD".
-        /// </summary>
-        public InputAction @RightD => m_Wrapper.m_Movement_RightD;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -416,12 +276,6 @@ public partial class @Player: IInputActionCollection2, IDisposable
             @Right.started += instance.OnRight;
             @Right.performed += instance.OnRight;
             @Right.canceled += instance.OnRight;
-            @LeftA.started += instance.OnLeftA;
-            @LeftA.performed += instance.OnLeftA;
-            @LeftA.canceled += instance.OnLeftA;
-            @RightD.started += instance.OnRightD;
-            @RightD.performed += instance.OnRightD;
-            @RightD.canceled += instance.OnRightD;
         }
 
         /// <summary>
@@ -439,12 +293,6 @@ public partial class @Player: IInputActionCollection2, IDisposable
             @Right.started -= instance.OnRight;
             @Right.performed -= instance.OnRight;
             @Right.canceled -= instance.OnRight;
-            @LeftA.started -= instance.OnLeftA;
-            @LeftA.performed -= instance.OnLeftA;
-            @LeftA.canceled -= instance.OnLeftA;
-            @RightD.started -= instance.OnRightD;
-            @RightD.performed -= instance.OnRightD;
-            @RightD.canceled -= instance.OnRightD;
         }
 
         /// <summary>
@@ -499,19 +347,5 @@ public partial class @Player: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnRight(InputAction.CallbackContext context);
-        /// <summary>
-        /// Method invoked when associated input action "LeftA" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-        /// </summary>
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnLeftA(InputAction.CallbackContext context);
-        /// <summary>
-        /// Method invoked when associated input action "RightD" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-        /// </summary>
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnRightD(InputAction.CallbackContext context);
     }
 }

@@ -10,7 +10,6 @@ public class PlayerPrototypeMovement : MonoBehaviour
     private Rigidbody rb;
     [SerializeField] private float speed = 50f;
     private bool moving;
-    private float y;
     [SerializeField] private bool left;
     [SerializeField] private bool right;
 
@@ -44,15 +43,15 @@ public class PlayerPrototypeMovement : MonoBehaviour
 
         else if (leftA)
         {
-            playerInput.Movement.LeftA.performed += Move;
-            playerInput.Movement.LeftA.canceled += Move;
+            //playerInput.Movement.LeftA.performed += Move;
+            //playerInput.Movement.LeftA.canceled += Move;
 
         }
 
         else if (rightD)
         {
-            playerInput.Movement.RightD.performed += Move;
-            playerInput.Movement.RightD.canceled += Move;
+            //playerInput.Movement.RightD.performed += Move;
+            //playerInput.Movement.RightD.canceled += Move;
         }
     }
 
@@ -66,11 +65,11 @@ public class PlayerPrototypeMovement : MonoBehaviour
             playerInput.Movement.Right.performed -= Move;
             playerInput.Movement.Right.canceled -= Move;
 
-            playerInput.Movement.LeftA.performed -= Move;
-            playerInput.Movement.LeftA.canceled -= Move;
+            //playerInput.Movement.LeftA.performed -= Move;
+            //playerInput.Movement.LeftA.canceled -= Move;
 
-            playerInput.Movement.RightD.performed -= Move;
-            playerInput.Movement.RightD.canceled -= Move;
+            //playerInput.Movement.RightD.performed -= Move;
+            //playerInput.Movement.RightD.canceled -= Move;
 
             playerInput.Movement.Disable();
         }
@@ -79,8 +78,6 @@ public class PlayerPrototypeMovement : MonoBehaviour
 
     private void Start()
     {
-
-        y = transform.position.y;
         rb = GetComponent<Rigidbody>();
 
     }
