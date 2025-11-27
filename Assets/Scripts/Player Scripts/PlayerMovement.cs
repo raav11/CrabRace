@@ -5,15 +5,17 @@ public class PlayerMovement : MonoBehaviour
 {
 
     private Player playerInput;
+
     private Vector2 movementDirectionFront;
     private Vector2 movementDirectionBack;
-    private Vector3 targetRotationFront;
-    private Vector3 targetRotationBack;
-    //[SerializeField] Rigidbody rb;
+
     [SerializeField] private float speed = 250f;
     private bool moving;
     [SerializeField] Transform front;
     [SerializeField] Transform back;
+
+    private Rigidbody rbFront;
+    private Rigidbody rbBack;
 
     [SerializeField] private Transform body;
 
@@ -54,14 +56,13 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
 
-        //rb = GetComponent<Rigidbody>();
-
         if (transform.rotation.eulerAngles.y == 270)
         {
-
-            Debug.Log("Flipped");
             speed = -speed;
         }
+
+        rbFront = front.GetComponent<Rigidbody>();
+        rbBack = back.GetComponent<Rigidbody>();
 
     }
     private void FixedUpdate()
@@ -70,21 +71,24 @@ public class PlayerMovement : MonoBehaviour
         if (moving)
         {
             Movement();
-
-            //rb.mass = 4;
         }
 
-        else
+        if (movementDirectionFront.y <= 0 && movementDirectionFront.x <= 0)
         {
-            //rb.mass = 10f;
+            Debug.Log("No Input Front");
+            rbFront.mass = 10f;
+        }
+
+        if (movementDirectionBack.y <= 0 && movementDirectionBack.x <= 0)
+        {
+            Debug.Log("No Input Back");
+            rbBack.mass = 10f;
         }
 
     }
 
     private void Update()
     {
-
-        //test if this works still por favor nvm move this maybe dont you rpob should
         if (body.rotation.eulerAngles.z >= 60 && body.rotation.eulerAngles.z <= 200 || body.rotation.eulerAngles.z <= 300 && body.rotation.eulerAngles.z >= 200)
         {
             timer += Time.deltaTime;
@@ -104,6 +108,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void Movement()
     {
+        Vector3 targetRotationFront = new Vector3();
+        Vector3 targetRotationBack = new Vector3();
 
         targetRotationFront.y = movementDirectionFront.y * speed;
         targetRotationBack.y = movementDirectionBack.y * speed;
@@ -118,6 +124,8 @@ public class PlayerMovement : MonoBehaviour
         movementDirectionFront = context.ReadValue<Vector2>();
 
         moving = context.performed;
+
+        rbFront.mass = 4f;
     }
 
     public void MoveDown(InputAction.CallbackContext context)
@@ -125,6 +133,8 @@ public class PlayerMovement : MonoBehaviour
         movementDirectionBack = context.ReadValue<Vector2>();
 
         moving = context.performed;
+
+        rbBack.mass = 4f;
     }
 
     private void Resposition()
