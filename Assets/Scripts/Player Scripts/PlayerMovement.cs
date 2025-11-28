@@ -22,7 +22,7 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private Transform body;
 
-    private float timer;
+    private bool punched;
 
     private void OnEnable()
     {
@@ -83,35 +83,14 @@ public class PlayerMovement : MonoBehaviour
 
         if (movementDirectionFront.y <= 0 && movementDirectionFront.x <= 0)
         {
-            Debug.Log("No Input Front");
             rbFront.mass = 10f;
             matFront.DisableKeyword("_EMISSION");
         }
 
         if (movementDirectionBack.y <= 0 && movementDirectionBack.x <= 0)
         {
-            Debug.Log("No Input Back");
             rbBack.mass = 10f;
             matBack.DisableKeyword("_EMISSION");
-        }
-
-    }
-
-    private void Update()
-    {
-        if (body.rotation.eulerAngles.z >= 60 && body.rotation.eulerAngles.z <= 200 || body.rotation.eulerAngles.z <= 300 && body.rotation.eulerAngles.z >= 200)
-        {
-            timer += Time.deltaTime;
-
-            if (timer >= 3.5f)
-            {
-                Resposition();
-            }
-        }
-
-        else
-        {
-            timer = 0;
         }
 
     }
@@ -151,15 +130,7 @@ public class PlayerMovement : MonoBehaviour
         rbBack.mass = 4f;
     }
 
-    private void Resposition()
-    {
 
-        body.localRotation = Quaternion.Euler(0, body.rotation.eulerAngles.y, 0);
-        body.position = new Vector3(body.position.x, 9f, body.position.z);
-
-        timer = 0;
-
-    }
 
 }
 
