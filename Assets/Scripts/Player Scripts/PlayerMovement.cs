@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -22,7 +23,10 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private Transform body;
 
-    private bool punched;
+    public bool punched = false;
+    public float punchCooldown;
+
+    private WaitForSeconds punchtime = new WaitForSeconds(0.5f);
 
     private void OnEnable()
     {
@@ -39,6 +43,9 @@ public class PlayerMovement : MonoBehaviour
         playerInput.Movement.Right.performed += MoveDown;
         playerInput.Movement.Right.canceled += MoveDown;
 
+        playerInput.Movement.Punch.performed += Punch;
+
+
     }
 
     private void OnDisable()
@@ -50,6 +57,8 @@ public class PlayerMovement : MonoBehaviour
 
             playerInput.Movement.Right.performed -= MoveDown;
             playerInput.Movement.Right.canceled -= MoveDown;
+
+            playerInput.Movement.Punch.performed -= Punch;
 
             playerInput.Movement.Disable();
         }
@@ -70,8 +79,14 @@ public class PlayerMovement : MonoBehaviour
         matFront = front.GetComponentInChildren<MeshRenderer>().material;
         matBack = back.GetComponentInChildren<MeshRenderer>().material;
 
-        Debug.Log(matFront);
-        Debug.Log(matBack);
+    }
+
+    private void Update()
+    {
+        if (punchCooldown > 0)
+        {
+            punchCooldown -= Time.deltaTime;
+        }
     }
     private void FixedUpdate()
     {
@@ -130,7 +145,24 @@ public class PlayerMovement : MonoBehaviour
         rbBack.mass = 4f;
     }
 
+    public void Punch(InputAction.CallbackContext context)
+    {
+        if (punchCooldown <= 0)
+        {
+            StartCoroutine(PunchCoroutine());
 
+            punchCooldown = 1.5f;
+        }
+    }
+
+    private IEnumerator PunchCoroutine()
+    {
+        punched = true;
+
+        yield return punchtime;
+
+        punched = false;
+    }
 
 }
 

@@ -16,6 +16,17 @@ public class Body : MonoBehaviour
     void Update()
     {
 
+        CheckIfFallen();
+
+        if (left.punched && right.punched)
+        {
+            Punch();
+        }
+
+    }
+
+    private void CheckIfFallen()
+    {
         if (transform.rotation.eulerAngles.z >= 60 && transform.rotation.eulerAngles.z <= 200 || transform.rotation.eulerAngles.z <= 300 && transform.rotation.eulerAngles.z >= 200)
         {
 
@@ -25,7 +36,6 @@ public class Body : MonoBehaviour
 
                 StartCoroutine(coroutine);
 
-                Debug.Log("Start");
             }
 
         }
@@ -36,12 +46,9 @@ public class Body : MonoBehaviour
             {
                 StopCoroutine(coroutine);
 
-                Debug.Log("Stop");
-
                 coroutine = null;
             }
         }
-
     }
 
     private IEnumerator Resposition()
@@ -54,12 +61,18 @@ public class Body : MonoBehaviour
 
         coroutine = null;
 
-        Debug.Log("Repositioned");
-
     }
 
     private void Punch()
     {
+
+        left.punched = false;
+        right.punched = false;
+
+        left.punchCooldown = 10f;
+        right.punchCooldown = 10f;
+
+        Debug.Log("Punched!");
 
     }
 }
