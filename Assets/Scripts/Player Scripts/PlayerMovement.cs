@@ -17,6 +17,9 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody rbFront;
     private Rigidbody rbBack;
 
+    private Material matFront;
+    private Material matBack;
+
     [SerializeField] private Transform body;
 
     private float timer;
@@ -64,6 +67,11 @@ public class PlayerMovement : MonoBehaviour
         rbFront = front.GetComponent<Rigidbody>();
         rbBack = back.GetComponent<Rigidbody>();
 
+        matFront = front.GetComponentInChildren<MeshRenderer>().material;
+        matBack = back.GetComponentInChildren<MeshRenderer>().material;
+
+        Debug.Log(matFront);
+        Debug.Log(matBack);
     }
     private void FixedUpdate()
     {
@@ -77,12 +85,14 @@ public class PlayerMovement : MonoBehaviour
         {
             Debug.Log("No Input Front");
             rbFront.mass = 10f;
+            matFront.DisableKeyword("_EMISSION");
         }
 
         if (movementDirectionBack.y <= 0 && movementDirectionBack.x <= 0)
         {
             Debug.Log("No Input Back");
             rbBack.mass = 10f;
+            matBack.DisableKeyword("_EMISSION");
         }
 
     }
@@ -125,6 +135,8 @@ public class PlayerMovement : MonoBehaviour
 
         moving = context.performed;
 
+        matFront.EnableKeyword("_EMISSION");
+
         rbFront.mass = 4f;
     }
 
@@ -133,6 +145,8 @@ public class PlayerMovement : MonoBehaviour
         movementDirectionBack = context.ReadValue<Vector2>();
 
         moving = context.performed;
+
+        matBack.EnableKeyword("_EMISSION");
 
         rbBack.mass = 4f;
     }
