@@ -7,10 +7,13 @@ public class Body : MonoBehaviour
     [SerializeField] private PlayerMovement left;
     [SerializeField] private PlayerMovement right;
 
-    private WaitForSeconds wait = new WaitForSeconds(3.5f);
+    public WaitForSeconds wait = new WaitForSeconds(3.5f);
 
-    private IEnumerator coroutine;
+    private WaitForSeconds punch = new WaitForSeconds(0.5f);
 
+    private IEnumerator coroutineReposition;
+
+    [SerializeField] private BoxCollider punchHitBox;
 
 
     void Update()
@@ -20,7 +23,7 @@ public class Body : MonoBehaviour
 
         if (left.punched && right.punched)
         {
-            Punch();
+            StartCoroutine(Punch());
         }
 
     }
@@ -30,11 +33,11 @@ public class Body : MonoBehaviour
         if (transform.rotation.eulerAngles.z >= 60 && transform.rotation.eulerAngles.z <= 200 || transform.rotation.eulerAngles.z <= 300 && transform.rotation.eulerAngles.z >= 200)
         {
 
-            if (coroutine == null)
+            if (coroutineReposition == null)
             {
-                coroutine = (Resposition());
+                coroutineReposition = (Resposition());
 
-                StartCoroutine(coroutine);
+                StartCoroutine(coroutineReposition);
 
             }
 
@@ -42,11 +45,11 @@ public class Body : MonoBehaviour
 
         else
         {
-            if (coroutine != null)
+            if (coroutineReposition != null)
             {
-                StopCoroutine(coroutine);
+                StopCoroutine(coroutineReposition);
 
-                coroutine = null;
+                coroutineReposition = null;
             }
         }
     }
@@ -59,11 +62,13 @@ public class Body : MonoBehaviour
         transform.localRotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
         transform.position = new Vector3(transform.position.x, 9f, transform.position.z);
 
-        coroutine = null;
+        coroutineReposition = null;
+
+        wait = new WaitForSeconds(3.5f);
 
     }
 
-    private void Punch()
+    private IEnumerator Punch()
     {
 
         left.punched = false;
@@ -72,7 +77,28 @@ public class Body : MonoBehaviour
         left.punchCooldown = 10f;
         right.punchCooldown = 10f;
 
-        Debug.Log("Punched!");
+        //enable a hitbox
 
+        punchHitBox.enabled = true;
+
+        yield return punch;
+
+        //disable it
+
+        punchHitBox.enabled = false;
+
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            Rigidbody rb = other.GetComponent<Rigidbody>();
+
+            rb.AddForce(transform.right * -35000);
+
+            Body script = other.GetComponent<Body>();
+            script.wait = new WaitForSeconds(15f);
+        }
     }
 }
