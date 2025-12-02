@@ -18,7 +18,12 @@ public class CrabInputManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance != null) { Destroy(gameObject); return; }
+        if (Instance != null)
+        {
+            Debug.LogError("Multiple InputManager instances found!");
+            Destroy(gameObject);
+            return;
+        }
         Instance = this;
     }
 
