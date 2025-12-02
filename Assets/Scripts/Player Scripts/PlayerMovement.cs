@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -17,9 +18,15 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody rbFront;
     private Rigidbody rbBack;
 
+    private Material matFront;
+    private Material matBack;
+
     [SerializeField] private Transform body;
 
-    private float timer;
+    public bool punched = false;
+    public float punchCooldown;
+
+    private WaitForSeconds punchtime = new WaitForSeconds(0.5f);
 
     private void OnEnable()
     {
@@ -36,6 +43,9 @@ public class PlayerMovement : MonoBehaviour
         playerInput.Movement.Right.performed += MoveDown;
         playerInput.Movement.Right.canceled += MoveDown;
 
+        playerInput.Movement.Punch.performed += Punch;
+
+
     }
 
     private void OnDisable()
@@ -47,6 +57,8 @@ public class PlayerMovement : MonoBehaviour
 
             playerInput.Movement.Right.performed -= MoveDown;
             playerInput.Movement.Right.canceled -= MoveDown;
+
+            playerInput.Movement.Punch.performed -= Punch;
 
             playerInput.Movement.Disable();
         }
@@ -64,6 +76,17 @@ public class PlayerMovement : MonoBehaviour
         rbFront = front.GetComponent<Rigidbody>();
         rbBack = back.GetComponent<Rigidbody>();
 
+        matFront = front.GetComponentInChildren<MeshRenderer>().material;
+        matBack = back.GetComponentInChildren<MeshRenderer>().material;
+
+    }
+
+    private void Update()
+    {
+        if (punchCooldown > 0)
+        {
+            punchCooldown -= Time.deltaTime;
+        }
     }
     private void FixedUpdate()
     {
@@ -75,33 +98,14 @@ public class PlayerMovement : MonoBehaviour
 
         if (movementDirectionFront.y <= 0 && movementDirectionFront.x <= 0)
         {
-            Debug.Log("No Input Front");
             rbFront.mass = 10f;
+            matFront.DisableKeyword("_EMISSION");
         }
 
         if (movementDirectionBack.y <= 0 && movementDirectionBack.x <= 0)
         {
-            Debug.Log("No Input Back");
             rbBack.mass = 10f;
-        }
-
-    }
-
-    private void Update()
-    {
-        if (body.rotation.eulerAngles.z >= 60 && body.rotation.eulerAngles.z <= 200 || body.rotation.eulerAngles.z <= 300 && body.rotation.eulerAngles.z >= 200)
-        {
-            timer += Time.deltaTime;
-
-            if (timer >= 3.5f)
-            {
-                Resposition();
-            }
-        }
-
-        else
-        {
-            timer = 0;
+            matBack.DisableKeyword("_EMISSION");
         }
 
     }
@@ -125,6 +129,8 @@ public class PlayerMovement : MonoBehaviour
 
         moving = context.performed;
 
+        matFront.EnableKeyword("_EMISSION");
+
         rbFront.mass = 4f;
     }
 
@@ -134,17 +140,28 @@ public class PlayerMovement : MonoBehaviour
 
         moving = context.performed;
 
+        matBack.EnableKeyword("_EMISSION");
+
         rbBack.mass = 4f;
     }
 
-    private void Resposition()
+    public void Punch(InputAction.CallbackContext context)
     {
+        if (punchCooldown <= 0)
+        {
+            StartCoroutine(PunchCoroutine());
 
-        body.localRotation = Quaternion.Euler(0, body.rotation.eulerAngles.y, 0);
-        body.position = new Vector3(body.position.x, 9f, body.position.z);
+            punchCooldown = 1.5f;
+        }
+    }
 
-        timer = 0;
+    private IEnumerator PunchCoroutine()
+    {
+        punched = true;
 
+        yield return punchtime;
+
+        punched = false;
     }
 
 }
