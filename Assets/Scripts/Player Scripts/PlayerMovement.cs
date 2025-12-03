@@ -78,6 +78,9 @@ public class PlayerMovement : MonoBehaviour
         matFront = front.GetComponentInChildren<MeshRenderer>().material;
         matBack = back.GetComponentInChildren<MeshRenderer>().material;
 
+        Debug.Log(matFront);
+        Debug.Log(matBack);
+
     }
 
     private void Update()
@@ -100,13 +103,13 @@ public class PlayerMovement : MonoBehaviour
         if (movementDirectionFront.y <= 0 && movementDirectionFront.x <= 0)
         {
             rbFront.mass = 10f;
-            matFront.DisableKeyword("_EMISSION");
+            matFront.DisableKeyword("_Emission");
         }
 
         if (movementDirectionBack.y <= 0 && movementDirectionBack.x <= 0)
         {
             rbBack.mass = 10f;
-            matBack.DisableKeyword("_EMISSION");
+            matBack.DisableKeyword("_Emission");
         }
 
     }
@@ -130,7 +133,7 @@ public class PlayerMovement : MonoBehaviour
 
         moving = context.performed;
 
-        matFront.EnableKeyword("_EMISSION");
+        matFront.EnableKeyword("_Emission");
 
         rbFront.mass = 4f;
     }
@@ -141,7 +144,7 @@ public class PlayerMovement : MonoBehaviour
 
         moving = context.performed;
 
-        matBack.EnableKeyword("_EMISSION");
+        matBack.EnableKeyword("_Emission");
 
         rbBack.mass = 4f;
     }
