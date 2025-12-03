@@ -45,7 +45,6 @@ public class PlayerMovement : MonoBehaviour
 
         playerInput.Movement.Punch.performed += Punch;
 
-
     }
 
     private void OnDisable()
@@ -96,6 +95,8 @@ public class PlayerMovement : MonoBehaviour
             Movement();
         }
 
+
+        //Is the player not moving dont make the legs glow.
         if (movementDirectionFront.y <= 0 && movementDirectionFront.x <= 0)
         {
             rbFront.mass = 10f;
