@@ -7,11 +7,12 @@ public class CrabInputManager : MonoBehaviour
     public static CrabInputManager Instance { get; private set; }
 
     [Header("Settings")]
-    [SerializeField] private GameObject driverPrefab;
-
-    [Header("The Crab Configuration")]
     [SerializeField] 
-    private LegPair[] legPairs;
+    private GameObject driverPrefab;
+
+    [Header("Crab Object")]
+    [SerializeField]
+    private GameObject crab;
 
     private HashSet<InputDevice> pairedDevices = new HashSet<InputDevice>();
     private int nextPairIndex = 0;
@@ -29,8 +30,6 @@ public class CrabInputManager : MonoBehaviour
 
     private void Update()
     {
-        if (nextPairIndex >= legPairs.Length) return;
-
         // Keyboard Join
         if (Keyboard.current != null && Keyboard.current.fKey.wasPressedThisFrame)
         {
@@ -62,19 +61,15 @@ public class CrabInputManager : MonoBehaviour
             controlScheme: (device is Keyboard) ? "Keyboard" : "Gamepad",
             pairWithDevice: device
         );
+        playerInput.transform.SetParent(crab.transform, false);
 
         pairedDevices.Add(device);
+        var driver = playerInput.GetComponent<PlayerMovement>();
 
-        LegPair targetLegs = legPairs[nextPairIndex];
-        nextPairIndex++;
+        driver.body = crab;
+        driver.front = crab.transform.Find("Foot Front Right").transform;
+        driver.back = crab.transform.Find("Foot Back Left").transform;
 
-        var driver = playerInput.GetComponent<CrabDriver>();
-        if (driver != null)
-        {
-            driver.AssignLegs(targetLegs.leftLeg, targetLegs.rightLeg);
-            driver.name = $"Player_{nextPairIndex}_({targetLegs.pairName})";
-        }
-
-        Debug.Log($"Player joined! Controlling: {targetLegs.pairName} using {device.displayName}");
+        Debug.Log($"Player joined! Controlling: {driver.name} with {device.displayName}");
     }
 }

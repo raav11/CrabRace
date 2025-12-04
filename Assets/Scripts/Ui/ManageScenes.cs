@@ -14,6 +14,11 @@ public class ManageScenes : MonoBehaviour
         SceneManager.LoadScene("Level");
     }
 
+    public void Main()
+    {
+        SceneManager.LoadScene("Main");
+    }   
+
     public void End()
     {
         SceneManager.LoadScene("End");

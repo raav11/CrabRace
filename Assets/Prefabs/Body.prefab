@@ -47,7 +47,7 @@ MonoBehaviour:
   speed: 250
   front: {fileID: 4626381898738133363}
   back: {fileID: 8924843726480385019}
-  body: {fileID: 5983578862430307153}
+  body: {fileID: 8525380744108374741}
   punched: 0
   punchCooldown: 0
 --- !u!1 &3863066767381402099
@@ -97,7 +97,7 @@ MonoBehaviour:
   speed: 250
   front: {fileID: 6578893502512011979}
   back: {fileID: 9102982008410197134}
-  body: {fileID: 5983578862430307153}
+  body: {fileID: 8525380744108374741}
   punched: 0
   punchCooldown: 0
 --- !u!1 &4754907821604281567

@@ -12,8 +12,8 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private float speed = 250f;
     private bool moving;
-    [SerializeField] Transform front;
-    [SerializeField] Transform back;
+    public Transform front;
+    public Transform back;
 
     private Rigidbody rbFront;
     private Rigidbody rbBack;
@@ -21,7 +21,7 @@ public class PlayerMovement : MonoBehaviour
     private Material matFront;
     private Material matBack;
 
-    [SerializeField] private Transform body;
+    public GameObject body;
 
     public bool punched = false;
     public float punchCooldown;
