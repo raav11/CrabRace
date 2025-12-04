@@ -78,13 +78,11 @@ public class Body : MonoBehaviour
         right.punchCooldown = 10f;
 
         //enable a hitbox
-
         punchHitBox.enabled = true;
 
         yield return punch;
 
         //disable it
-
         punchHitBox.enabled = false;
 
     }
