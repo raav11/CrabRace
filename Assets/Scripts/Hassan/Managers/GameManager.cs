@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -26,6 +27,9 @@ public class GameManager : MonoBehaviour
     private float timerTeam1;
     [SerializeField]
     private float timerTeam2;
+
+    [SerializeField]
+    private TextMeshProUGUI timerTeamsText;
 
     private void Awake()
     {
@@ -67,6 +71,8 @@ public class GameManager : MonoBehaviour
         {
             timerTeam2 += Time.deltaTime;
         }
+
+        timerTeamsText.text = $"Team 1 Time: {timerTeam1:F2} s\nTeam 2 Time: {timerTeam2:F2} s";
     }
 
     private void CrabFinished(object sender, Body e)
