@@ -8,19 +8,19 @@ public class CameraSystem : MonoBehaviour
     [SerializeField]
     private CinemachineFollow cinemachineFollow;
     [SerializeField]
-    private TestPlayerController targetPlayer;
+    private Body targetCrab;
 
     private void Start()
     {
         GameManager.Instance.OnLeaderChanged += SwitchTarget;
     }
 
-    private void SwitchTarget(object sender, TestPlayerController e)
+    private void SwitchTarget(object sender, Body e)
     {
-        if (e != null && e != targetPlayer)
+        if (e != null && e != targetCrab)
         {
-            targetPlayer = e;
-            cinemachineCamera.Follow = targetPlayer.transform;
+            targetCrab = e;
+            cinemachineCamera.Follow = targetCrab.transform;
         }
     }
 }

@@ -6,26 +6,14 @@ using UnityEngine.UI;
 
 public class TestPlayerController : Entity
 {
-    public enum Team
-    {
-        Team1,
-        Team2
-    }
+
 
     [SerializeField]
     private Vector2 moveInput;
 
-    public float distanceToFinish;
-
-    [SerializeField]
-    private List<BasePickUp> collectedPickUps = new List<BasePickUp>();
-    private const int maxPickUps = 3;
-    public Team team;
-
     public override void Start()
     {
         base.Start();
-        GameManager.Instance.RegisterPlayer(this);
     }
 
     public override void Update()
@@ -69,35 +57,5 @@ public class TestPlayerController : Entity
     private void OnJump()
     {
         jump = true;
-    }
-    
-    private void OnPowerUPSlot1()
-    {
-        collectedPickUps[0]?.PickUpEffect(this.gameObject);
-    }
-
-    private void OnPowerUPSlot2()
-    {
-        collectedPickUps[1]?.PickUpEffect(this.gameObject);
-    }
-
-    private void OnPowerUPSlot3()
-    {
-        collectedPickUps[2]?.PickUpEffect(this.gameObject);
-    }
-
-    private void OnControllerColliderHit(ControllerColliderHit hit)
-    {
-        if (hit.gameObject.CompareTag("PickUp"))
-        {
-            if (collectedPickUps.Count >= maxPickUps)
-            {
-                Debug.Log("Cannot collect more pick-ups. Inventory full.");
-                return;
-            }
-            BasePickUp pickUp = hit.gameObject.GetComponent<BasePickUp>();
-            collectedPickUps.Add(pickUp);
-            pickUp.PickUpEffect(this.gameObject);
-        }
     }
 }

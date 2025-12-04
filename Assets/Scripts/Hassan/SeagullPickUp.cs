@@ -14,7 +14,7 @@ public class SeagullPickUp : BasePickUp
 
     public override void PickUpEffect(GameObject player)
     {
-        TestPlayerController playerInTheLead = GameManager.Instance.GetPlayerInTheLead();
+        Body playerInTheLead = GameManager.Instance.GetPlayerInTheLead();
         if (playerInTheLead == null)
         {
             // Fallback: destroy pickup immediately if no leader

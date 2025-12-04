@@ -4,20 +4,19 @@ using UnityEngine.SceneManagement;
 
 public class FinishCheck : MonoBehaviour
 {
-    public EventHandler<TestPlayerController> OnPlayerFinished;
+    public EventHandler<Body> OnPlayerFinished;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-
-            SceneManager.LoadScene("End");
-
-            TestPlayerController player = other.GetComponent<TestPlayerController>();
+            Body player = other.GetComponent<Body>();
             if (player != null)
             {
                 OnPlayerFinished?.Invoke(this, player);
             }
+
+            SceneManager.LoadScene("End");
         }
     }
 }

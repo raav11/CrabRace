@@ -49,8 +49,11 @@ MonoBehaviour:
   front: {fileID: 0}
   back: {fileID: 0}
   body: {fileID: 0}
+  player: {fileID: -6170792630348033459}
   punched: 0
   punchCooldown: 0
+  collectedPickUps: []
+  team: 0
 --- !u!114 &-6170792630348033459
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63,7 +66,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.PlayerInput
-  m_Actions: {fileID: -944628639613478452, guid: 188ee11cc186d114f9cf49d0b2307e84, type: 3}
+  m_Actions: {fileID: -944628639613478452, guid: 6890c314a149b384cb57e36b078a3271, type: 3}
   m_NotificationBehavior: 0
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
@@ -78,6 +81,6 @@ MonoBehaviour:
   m_ActionEvents: []
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Gamepad
-  m_DefaultActionMap: Player
+  m_DefaultActionMap: Movement
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}

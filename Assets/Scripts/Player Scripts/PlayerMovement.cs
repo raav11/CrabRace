@@ -1,9 +1,17 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static TestPlayerController;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public enum Team
+    {
+        Team1,
+        Team2
+    }
+
 
     private Player playerInput;
 
@@ -28,12 +36,16 @@ public class PlayerMovement : MonoBehaviour
 
     private WaitForSeconds punchtime = new WaitForSeconds(0.5f);
 
+    [SerializeField]
+    private List<BasePickUp> collectedPickUps = new List<BasePickUp>();
+    private const int maxPickUps = 3;
+    public Team team;
+
     private void OnEnable()
     {
-        if (playerInput == null)
-        {
-            playerInput = new Player();
-        }
+        GameManager.Instance.RegisterPlayer(this);
+
+        playerInput = new Player();
 
         playerInput.Movement.Enable();
 
@@ -61,6 +73,8 @@ public class PlayerMovement : MonoBehaviour
 
             playerInput.Movement.Disable();
         }
+
+        GameManager.Instance.DeRegisterPlayer(this);
     }
 
 

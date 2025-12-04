@@ -1,11 +1,19 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using static PlayerMovement;
 
 public class Body : MonoBehaviour
 {
+    public enum Team
+    {
+        Team1,
+        Team2
+    }
 
-    [SerializeField] private PlayerMovement left;
-    [SerializeField] private PlayerMovement right;
+
+    public PlayerMovement left;
+    public PlayerMovement right;
 
     public WaitForSeconds wait = new WaitForSeconds(3.5f);
 
@@ -13,7 +21,14 @@ public class Body : MonoBehaviour
 
     private IEnumerator coroutineReposition;
 
+    public float distanceToFinish;
+
     [SerializeField] private BoxCollider punchHitBox;
+
+    public Team team;
+
+    public List<PlayerMovement> players = new List<PlayerMovement>(maxPlayers);
+    private const int maxPlayers = 2;
 
 
     void Update()
@@ -21,11 +36,13 @@ public class Body : MonoBehaviour
 
         CheckIfFallen();
 
-        if (left.punched && right.punched)
+        if (left != null && right != null)
         {
-            StartCoroutine(Punch());
+            if (left.punched && right.punched)
+            {
+                StartCoroutine(Punch());
+            }
         }
-
     }
 
     private void CheckIfFallen()
@@ -70,7 +87,6 @@ public class Body : MonoBehaviour
 
     private IEnumerator Punch()
     {
-
         left.punched = false;
         right.punched = false;
 
@@ -79,8 +95,8 @@ public class Body : MonoBehaviour
 
         //enable a hitbox
         punchHitBox.enabled = true;
-
         yield return punch;
+
 
         //disable it
         punchHitBox.enabled = false;

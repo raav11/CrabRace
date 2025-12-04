@@ -7,13 +7,16 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
-    public EventHandler<TestPlayerController> OnLeaderChanged;
+    public EventHandler<Body> OnLeaderChanged;
 
     [SerializeField]
-    private List<TestPlayerController> players = new List<TestPlayerController>();
+    private List<PlayerMovement> players = new List<PlayerMovement>();
+    public const int maxPlayers = 4;
+    [SerializeField]
+    private List<Body> crabs = new List<Body>();
 
     [SerializeField]
-    private TestPlayerController playerInTheLead;
+    private Body crabInTheLead;
     [SerializeField]
     private GameObject finishLine;
     private bool raceFinishedTeam1 = false;
@@ -40,20 +43,20 @@ public class GameManager : MonoBehaviour
         FinishCheck finishCheck = finishLine.GetComponent<FinishCheck>();
 
         // Fix: Subscribe the method as an event handler, not call it directly
-        finishCheck.OnPlayerFinished += PlayerFinished;
+        finishCheck.OnPlayerFinished += CrabFinished;
     }
 
     private void Update()
     {
-        foreach (var player in players)
+        foreach (var crab in crabs)
         {
-            player.distanceToFinish = Vector3.Distance(player.transform.position, finishLine.transform.position);
+            crab.distanceToFinish = Vector3.Distance(crab.transform.position, finishLine.transform.position);
         }
 
-        playerInTheLead = players.OrderBy(p => p.distanceToFinish).FirstOrDefault();
-        if (playerInTheLead != null)
+        crabInTheLead = crabs.OrderBy(p => p.distanceToFinish).FirstOrDefault();
+        if (crabInTheLead != null)
         {
-            OnLeaderChanged?.Invoke(this, playerInTheLead);
+            OnLeaderChanged?.Invoke(this, crabInTheLead);
         }
 
         if (!raceFinishedTeam1)
@@ -66,19 +69,19 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void PlayerFinished(object sender, TestPlayerController e)
+    private void CrabFinished(object sender, Body e)
     {
-        if (e.team == TestPlayerController.Team.Team1 && !raceFinishedTeam1)
+        if (e.team == Body.Team.Team1 && !raceFinishedTeam1)
         {
             raceFinishedTeam1 = true;
         }
-        else if (e.team == TestPlayerController.Team.Team2 && !raceFinishedTeam2)
+        else if (e.team == Body.Team.Team2 && !raceFinishedTeam2)
         {
             raceFinishedTeam2 = true;
         }
     }
 
-    public void RegisterPlayer(TestPlayerController player)
+    public void RegisterPlayer(PlayerMovement player)
     {
         // Avoid duplicate registration
         if (players.Contains(player))
@@ -93,16 +96,15 @@ public class GameManager : MonoBehaviour
         int index = players.Count - 1;
         if (index < 2)
         {
-            player.team = TestPlayerController.Team.Team1;
+            player.team = PlayerMovement.Team.Team1;
         }
         else
         {
-            player.team = TestPlayerController.Team.Team2;
+            player.team = PlayerMovement.Team.Team2;
         }
-        //InputManager.Instance.OnPlayerRegistered?.Invoke(this, EventArgs.Empty);
     }
 
-    public void DeRegisterPlayer(TestPlayerController player)
+    public void DeRegisterPlayer(PlayerMovement player)
     {
         // Implementation for deregistering the player
         if (players.Contains(player))
@@ -111,19 +113,19 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public List<TestPlayerController> GetPlayers()
+    public List<PlayerMovement> GetPlayers()
     {
         return players;
     }
 
-    public TestPlayerController GetPlayerInTheLead()
+    public Body GetPlayerInTheLead()
     {
-        return playerInTheLead;
+        return crabInTheLead;
     }
 
-    public TestPlayerController GetPlayerInTheBack()
+    public Body GetPlayerInTheBack()
     {
-        return players.OrderByDescending(p => p.distanceToFinish).FirstOrDefault();
+        return crabs.OrderByDescending(p => p.distanceToFinish).FirstOrDefault();
     }
 
     // Example method to demonstrate interaction with AudioManager
