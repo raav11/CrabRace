@@ -99,13 +99,12 @@ Material:
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
     - _Cull: 2
-    - _Curve_sharpness: -0.005
+    - _Curve_sharpness: 0.005
     - _Cutoff: 0.5
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _DstBlendAlpha: 0
-    - _Emission: 0
     - _EnvironmentReflections: 1
     - _Float: -0.005
     - _GlossMapScale: 0
