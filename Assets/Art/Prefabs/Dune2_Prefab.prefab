@@ -54,7 +54,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 5a98d4013702d66448d3307fd493f9a7, type: 2}
     - target: {fileID: 919132149155446097, guid: 8b955f13017622e4ba31fffe24977550, type: 3}
       propertyPath: m_Name
-      value: Dune2_Model
+      value: Dune2_Prefab
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
