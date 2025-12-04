@@ -1126,7 +1126,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1407009173}
         m_TargetAssemblyTypeName: ManageScenes, Assembly-CSharp
-        m_MethodName: Main
+        m_MethodName: Level
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
