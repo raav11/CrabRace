@@ -17,7 +17,7 @@ public class ManageScenes : MonoBehaviour
     public void Main()
     {
         SceneManager.LoadScene("Main");
-    }   
+    }
 
     public void End()
     {
@@ -29,10 +29,15 @@ public class ManageScenes : MonoBehaviour
         SceneManager.LoadScene("Start");
     }
 
+    public void Controls()
+    {
+        SceneManager.LoadScene("Controls");
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         //location will change this is temp for the prototype (likely)
-       
+
         End();
 
     }
